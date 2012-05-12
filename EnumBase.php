@@ -13,7 +13,7 @@ abstract class EnumBase {
         $values = array();
         $clazz = get_called_class();
         foreach (self::$enumValues as $enumValue) {
-            if ($clazz == get_class($enumValue)) {
+            if ($enumValue instanceof $clazz) {
                 $values[] = $enumValue;
             }
         }
@@ -38,14 +38,8 @@ abstract class EnumBase {
     }
     public static function valueOf($name) {
         $clazz = get_called_class();
-
-        $reflection = new ReflectionClass($clazz);
-        $staticProperties = $reflection->getStaticProperties();
-
-        foreach ($staticProperties as $propName => $value) {
-            if ($name === $propName) {
-                return $value;
-            }
+        if (isset($clazz::$$name)) {
+            return $clazz::$$name;
         }
         throw new Exception('そのような名前の enum は存在しません. name['.$name.'] $clazz['.$clazz.']');
 
