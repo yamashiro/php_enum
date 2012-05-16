@@ -1,10 +1,13 @@
-# This is project that realize java like enum on php.
+This is project that realize enum on php like java enum.
 
 ## Usage
+
 See CarrierEnum.php . 
 
 ## Test
->phpunit CarrierEnumTest.php
+
+>>phpunit CarrierEnumTest.php
 
 ## License
+
 MIT
